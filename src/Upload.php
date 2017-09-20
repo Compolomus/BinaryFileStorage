@@ -17,11 +17,6 @@ class Upload
         return $this->addtemp($files);
     }
 
-    private function uniqId(): string
-    {
-        return \substr(\md5(\uniqid()), 0, 8);
-    }
-
     private function addTemp(array $array): array
     {
         $result = [];
@@ -44,7 +39,8 @@ class Upload
     }
 
     /**
-     * @param $inputArray => $_FILES
+     * $inputArray => $_FILES
+     * @param array $inputArray
      * @return array
      */
     private function upload(array $inputArray): array
