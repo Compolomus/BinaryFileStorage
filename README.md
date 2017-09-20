@@ -1,6 +1,10 @@
-# Koenig LSQLQueryBuilder
+# Koenig BinaryFileStorage
 
 [![License](https://img.shields.io/badge/license-GPL%20v.3-blue.svg?style=plastic)](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
+
+[![Build Status](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/?branch=master)
+
 
 ## Установка:
 
@@ -22,9 +26,7 @@ $storageConfig = [
     'secondDirLen' => 2
 ];
 
-$dir = $storageConfig['uploadDir'] . DIRECTORY_SEPARATOR . $storageConfig['prefix'];
-
-$storage = new Storage($dir, $storageConfig);
+$storage = new Storage($storageConfig);
 $input = $storage->check($_FILES);
 
 /*

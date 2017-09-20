@@ -13,7 +13,6 @@ class Storage
     protected $upload;
 
     public function __construct(
-        string $dir,
         array $config = [
             'uploadDir' => 'upload',
             'prefix' => '',
