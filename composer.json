@@ -1,0 +1,24 @@
+{
+  "name": "compolomus/binary-file-storage",
+  "description": "Light file storage",
+  "license": "GPL-3.0",
+  "keywords": [
+    "upload",
+    "php7"
+  ],
+  "type": "library",
+  "authors": [
+    {
+      "name": "Koenig",
+      "email": "compolom@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Compolomus\\BinaryFileStorage\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^7.0"
+  }
+}
