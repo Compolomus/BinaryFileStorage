@@ -1,0 +1,2 @@
+# BinaryFileStorage
+Light file storage
