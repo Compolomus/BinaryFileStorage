@@ -5,6 +5,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/?branch=master)
 [![Code Climate](https://codeclimate.com/github/Compolomus/BinaryFileStorage/badges/gpa.svg)](https://codeclimate.com/github/Compolomus/BinaryFileStorage)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2b860c2a-a573-45aa-9e33-d597d5907bc0/mini.png)](https://insight.sensiolabs.com/projects/2b860c2a-a573-45aa-9e33-d597d5907bc0)
 
 
 ## Установка:
