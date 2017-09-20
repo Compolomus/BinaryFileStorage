@@ -11,7 +11,7 @@ class Upload
         $this->tmpDir = $dir . DIRECTORY_SEPARATOR . 'tmp';
     }
 
-    public function process($files)//: array
+    public function process(array $files): array
     {
         $files = $this->upload($files);
         return $this->addtemp($files);

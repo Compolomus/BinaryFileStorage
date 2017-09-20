@@ -29,7 +29,7 @@ class File
         $this->type = $data['type'];
     }
 
-    public function getMd5()
+    public function getMd5(): string
     {
         return $this->md5;
     }
@@ -39,7 +39,7 @@ class File
         $this->path = $path;
     }
 
-    public function getData()
+    public function getData(): array
     {
         return [
             'name' => $this->name,
