@@ -20,7 +20,7 @@ class Upload
     private function addTemp(array $array): array
     {
         $result = [];
-        foreach ($array as $key => $file) {
+        foreach ($array as $file) {
             if (!empty($file['tmp_name'])) {
                 $data = [
                     'tmp' => $file['tmp_name'],

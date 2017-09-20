@@ -39,9 +39,8 @@ class Storage
     {
         if (\count($input)) {
             return $this->add($this->upload->process($input));
-        } else {
-            return null;
         }
+        return null;
     }
 
     public function count(): int
@@ -94,7 +93,7 @@ class Storage
     public function fileSize(int $size): string
     {
         $alpha = [" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB"];
-        return $size ? \round($size / \pow(1024, ($i = \floor(\log($size, 1024)))), 2) . $alpha[$i] : '0 Bytes';
+        return $size ? \round($size / \pow(1024, ($iterator = \floor(\log($size, 1024)))), 2) . $alpha[$iterator] : '0 Bytes';
     }
 
     public function dirName(string $file): string
@@ -114,11 +113,11 @@ class Storage
     {
         $files = [];
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->dir),
-            \RecursiveIteratorIterator::CHILD_FIRST) as $fullFileName => $SplFileObject) {
-            if ($SplFileObject->isFile() && $SplFileObject->getExtension() != 'json') {
+            \RecursiveIteratorIterator::CHILD_FIRST) as $fullFileName => $splFileObject) {
+            if ($splFileObject->isFile() && $splFileObject->getExtension() != 'json') {
                 $files[\basename($fullFileName)] = [
-                    'file' => $SplFileObject->getRealPath(),
-                    'time' => $SplFileObject->getMTime()
+                    'file' => $splFileObject->getRealPath(),
+                    'time' => $splFileObject->getMTime()
                 ];
             }
             \uasort($files, [$this, 'sortByTime']);
@@ -126,9 +125,9 @@ class Storage
         return new \ArrayIterator($files);
     }
 
-    private function sortByTime(array $a, array $b): int
+    private function sortByTime(array $first, array $second): int
     {
-        return ($a['time'] <=> $b['time']);
+        return ($first['time'] <=> $second['time']);
     }
 
     private function createDir(string $md5): string

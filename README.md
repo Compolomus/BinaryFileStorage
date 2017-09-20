@@ -4,6 +4,7 @@
 
 [![Build Status](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Compolomus/BinaryFileStorage/?branch=master)
+[![Code Climate](https://codeclimate.com/github/Compolomus/BinaryFileStorage/badges/gpa.svg)](https://codeclimate.com/github/Compolomus/BinaryFileStorage)
 
 
 ## Установка:

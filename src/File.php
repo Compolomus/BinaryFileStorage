@@ -21,11 +21,10 @@ class File
         $this->name = $data['name'];
         $this->md5 = $this->generateMd5Hash($data['tmp']);
         $this->size = $data['size'];
+        $this->ext = 'bin';
         if (\preg_match("#\.#", $data['name'])) {
             $ext = \explode('.', $data['name']);
             $this->ext = \end($ext);
-        } else {
-            $this->ext = 'bin';
         }
         $this->type = $data['type'];
     }
