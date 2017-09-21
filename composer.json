@@ -1,7 +1,7 @@
 {
   "name": "compolomus/binary-file-storage",
   "description": "Light file storage",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "keywords": [
     "upload",
     "php7"
