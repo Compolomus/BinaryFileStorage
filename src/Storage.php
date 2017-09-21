@@ -61,9 +61,8 @@ class Storage
 
     private function add(array $file): array
     {
-        $result = [];
-        array_map(
-            function (File $file) use ($result) {
+        return array_map(
+            function (File $file) {
                 $data = $file->getData();
                 $md5 = $data['md5'];
                 $dir = $this->createDir($md5);
@@ -81,10 +80,9 @@ class Storage
                     \file_put_contents($item . '.json',
                         json_encode($meta));
                 }
-                $result[] = $meta;
+                return $meta;
             }
             , $file);
-        return $result;
     }
 
     public function fileSize(int $size): string
