@@ -12,16 +12,16 @@ class Storage
 
     protected $upload;
 
-    public function __construct(
-        array $config = [
+    public function __construct(array $config = [])
+    {
+        $defaultConfig = [
             'uploadDir' => 'upload',
             'prefix' => '',
             'addMetaFile' => true,
             'firstDirLen' => 2,
             'secondDirLen' => 2
-        ]
-    ) {
-        $this->config = $config;
+        ];
+        $this->config = \array_merge($defaultConfig, $config);
         $this->dir = $this->createStorageDir($config['uploadDir'] . DIRECTORY_SEPARATOR . $config['prefix']);
         $this->upload = new Upload($this->dir);
         $this->count = \count($this->map());
@@ -59,41 +59,39 @@ class Storage
         return \is_file($fileName) ? new \SplFileObject($fileName) : null;
     }
 
-    /**
-     * @param $file File | array
-     */
-    private function add($file): array
+    private function add(array $file): array
     {
-        static $result = [];
-        if (!is_array($file)) {
-            $data = $file->getData();
-            $md5 = $data['md5'];
-            $dir = $this->createDir($md5);
-            $item = $dir . DIRECTORY_SEPARATOR . $md5;
-            \rename($data['path'], $item);
-            $meta = [
-                'name' => $data['name'],
-                'ext' => $data['ext'],
-                'size' => $data['size'],
-                'type' => $data['type'],
-                'path' => $item,
-                'bin' => $md5
-            ];
-            if ($this->config['addMetaFile']) {
-                \file_put_contents($item . '.json',
-                    json_encode($meta));
+        $result = [];
+        array_map(
+            function (File $file) use ($result) {
+                $data = $file->getData();
+                $md5 = $data['md5'];
+                $dir = $this->createDir($md5);
+                $item = $dir . DIRECTORY_SEPARATOR . $md5;
+                \rename($data['path'], $item);
+                $meta = [
+                    'name' => $data['name'],
+                    'ext' => $data['ext'],
+                    'size' => $data['size'],
+                    'type' => $data['type'],
+                    'path' => $item,
+                    'bin' => $md5
+                ];
+                if ($this->config['addMetaFile']) {
+                    \file_put_contents($item . '.json',
+                        json_encode($meta));
+                }
+                $result[] = $meta;
             }
-            $result[] = $meta;
-        } else {
-            array_map([$this, 'add'], $file, [$this->config['addMetaFile']]);
-        }
+        , $file);
         return $result;
     }
 
     public function fileSize(int $size): string
     {
         $alpha = [" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB"];
-        return $size ? \round($size / \pow(1024, ($iterator = \floor(\log($size, 1024)))), 2) . $alpha[$iterator] : '0 Bytes';
+        return $size ? \round($size / \pow(1024, ($iterator = \floor(\log($size, 1024)))),
+                2) . $alpha[(int) $iterator] : '0 Bytes';
     }
 
     public function dirName(string $file): string

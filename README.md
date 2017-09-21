@@ -8,6 +8,8 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/2b860c2a-a573-45aa-9e33-d597d5907bc0/mini.png)](https://insight.sensiolabs.com/projects/2b860c2a-a573-45aa-9e33-d597d5907bc0)
 [![Downloads](https://poser.pugx.org/compolomus/binary-file-storage/downloads)](https://packagist.org/packages/compolomus/binary-file-storage)
 
+## Перехват выгрузки файлов с форм, добавление в хранилище в бинарном виде, получение файлов по хэш ключу
+
 ## Установка:
 
 composer require compolomus/binary-file-storage
@@ -23,9 +25,7 @@ require __DIR__ . '/vendor/autoload.php';
 $storageConfig = [
     'uploadDir' => 'files',
     'prefix' => 'prefix',
-    'addMetaFile' => true,
     'firstDirLen' => 1,
-    'secondDirLen' => 2
 ];
 
 $storage = new Storage($storageConfig);
@@ -64,7 +64,7 @@ $file = isset($_GET['file']) ? htmlentities($_GET['file'], ENT_QUOTES, 'UTF-8') 
 if ($file) {
     $obj = $storage->download($file);
     if (!is_null($obj)) {
-        $meta = $storage->getInfoFile($file, 'rb');
+        $meta = $storage->getInfoFile($file);
         ob_get_level() && ob_end_clean();
         header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
         header('Content-Type: application/force-download');

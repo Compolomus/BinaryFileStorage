@@ -13,7 +13,7 @@ class Upload
 
     public function process(array $files): array
     {
-        $files = $this->upload($files);
+        $files = $this->buildFilesArray($files);
         return $this->addtemp($files);
     }
 
@@ -40,10 +40,11 @@ class Upload
 
     /**
      * $inputArray => $_FILES
+     * rebuild Files array
      * @param array $inputArray
      * @return array
      */
-    private function upload(array $inputArray): array
+    private function buildFilesArray(array $inputArray): array
     {
         $result = [];
         foreach ($inputArray as $fieldName => $file) {
