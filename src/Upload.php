@@ -49,12 +49,12 @@ class Upload
         $result = [];
         foreach ($inputArray as $fieldName => $file) {
             foreach ($file as $key => $value) {
-                if (!is_array($value)) {
-                    $result[$fieldName][$key] = $value;
-                } else {
+                if (is_array($value)) {
                     foreach ($value as $k => $v) {
                         $result[$k][$key] = $v;
                     }
+                } else {
+                    $result[$fieldName][$key] = $value;
                 }
             }
         }
