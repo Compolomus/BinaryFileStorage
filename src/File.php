@@ -22,9 +22,9 @@ class File
         $this->md5 = $this->generateMd5Hash($data['tmp']);
         $this->size = $data['size'];
         $this->ext = 'bin';
-        if (\preg_match("#\.#", $data['name'])) {
-            $ext = \explode('.', $data['name']);
-            $this->ext = \end($ext);
+        if (preg_match("#\.#", $data['name'])) {
+            $ext = explode('.', $data['name']);
+            $this->ext = end($ext);
         }
         $this->type = $data['type'];
     }
@@ -53,6 +53,6 @@ class File
 
     public function generateMd5Hash(string $file): string
     {
-        return \md5_file($file);
+        return md5_file($file);
     }
 }

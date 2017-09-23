@@ -31,7 +31,7 @@ class Upload
                 $obj = new File($data);
                 $fileName = $this->tmpDir . DIRECTORY_SEPARATOR . $obj->getMd5();
                 $obj->setPath($fileName);
-                \rename($file['tmp_name'], $fileName);
+                rename($file['tmp_name'], $fileName);
                 $result[] = $obj;
             }
         }
