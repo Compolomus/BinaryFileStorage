@@ -132,4 +132,3 @@ class Storage
         return $dir;
     }
 }
-
