@@ -116,14 +116,11 @@ class Storage
                     'time' => $splFileObject->getMTime()
                 ];
             }
-            \uasort($files, [$this, 'sortByTime']);
+            \uasort($files, function (array $first, array $second): int {
+                return ($first['time'] <=> $second['time']);
+            });
         }
         return new \ArrayIterator($files);
-    }
-
-    private function sortByTime(array $first, array $second): int
-    {
-        return ($first['time'] <=> $second['time']);
     }
 
     private function createDir(string $md5): string
