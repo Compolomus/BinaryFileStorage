@@ -53,7 +53,7 @@ class Upload
                 if (!is_array($value)) {
                     $result[$fieldName][$key] = $value;
                 } else {
-                    array_walk($value, function ($v, $k) use (&$result, $key) {
+                    array_walk($value, function($v, $k) use (&$result, $key) {
                         $result[$k][$key] = $v;
                     });
                 }
