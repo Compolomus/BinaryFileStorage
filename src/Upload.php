@@ -31,7 +31,7 @@ class Upload
                 $obj = new File($data);
                 $fileName = $this->tmpDir . DIRECTORY_SEPARATOR . $obj->getMd5();
                 $obj->setPath($fileName);
-                \rename($file['tmp_name'], $fileName);
+                rename($file['tmp_name'], $fileName);
                 $result[] = $obj;
             }
         }
@@ -44,18 +44,17 @@ class Upload
      * @param array $inputArray
      * @return array
      */
+
     private function buildFilesArray(array $inputArray): array
     {
         $result = [];
         foreach ($inputArray as $fieldName => $file) {
             foreach ($file as $key => $value) {
-                if (!is_array($value)) {
-                    $result[$fieldName][$key] = $value;
-                } else {
-                    foreach ($value as $k => $v) {
-                        $result[$k][$key] = $v;
-                    }
-                }
+                !is_array($value)
+                    ? $result[$fieldName][$key] = $value
+                    : array_walk($value, function($v, $k) use (&$result, $key) {
+                    $result[$k][$key] = $v;
+                });
             }
         }
         return $result;
