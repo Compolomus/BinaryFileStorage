@@ -50,11 +50,13 @@ class Upload
         $result = [];
         foreach ($inputArray as $fieldName => $file) {
             foreach ($file as $key => $value) {
-                !is_array($value)
-                    ? $result[$fieldName][$key] = $value
-                    : array_walk($value, function($v, $k) use (&$result, $key) {
-                    $result[$k][$key] = $v;
-                });
+                if (!is_array($value)) {
+                    $result[$fieldName][$key] = $value;
+                } else {
+                    array_walk($value, function($v, $k) use (&$result, $key) {
+                        $result[$k][$key] = $v;
+                    });
+                }
             }
         }
         return $result;
