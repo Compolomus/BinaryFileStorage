@@ -89,7 +89,7 @@ class Storage
     {
         $alpha = [" Bytes", " KB", " MB", " GB", " TB", " PB", " EB", " ZB", " YB"];
         return $size ? round($size / pow(1024, ($iterator = floor(log($size, 1024)))),
-                2) . $alpha[(int)$iterator] : '0 Bytes';
+                2) . $alpha[(int) $iterator] : '0 Bytes';
     }
 
     public function dirName(string $file): string
@@ -116,7 +116,7 @@ class Storage
                     'time' => $splFileObject->getMTime()
                 ];
             }
-            uasort($files, function (array $first, array $second): int {
+            uasort($files, function(array $first, array $second): int {
                 return ($first['time'] <=> $second['time']);
             });
         }

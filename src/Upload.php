@@ -52,7 +52,7 @@ class Upload
             foreach ($file as $key => $value) {
                 !is_array($value)
                     ? $result[$fieldName][$key] = $value
-                    : array_walk($value, function ($v, $k) use (&$result, $key) {
+                    : array_walk($value, function($v, $k) use (&$result, $key) {
                     $result[$k][$key] = $v;
                 });
             }
