@@ -44,18 +44,17 @@ class Upload
      * @param array $inputArray
      * @return array
      */
+
     private function buildFilesArray(array $inputArray): array
     {
         $result = [];
         foreach ($inputArray as $fieldName => $file) {
             foreach ($file as $key => $value) {
-                if (is_array($value)) {
-                    foreach ($value as $k => $v) {
-                        $result[$k][$key] = $v;
-                    }
-                } else {
-                    $result[$fieldName][$key] = $value;
-                }
+                !is_array($value)
+                    ? $result[$fieldName][$key] = $value
+                    : array_walk($value, function ($v, $k) use (&$result, $key) {
+                    $result[$k][$key] = $v;
+                });
             }
         }
         return $result;
